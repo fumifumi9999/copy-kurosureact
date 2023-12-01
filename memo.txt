@@ -1,0 +1,41 @@
+"use client"
+import { useState } from 'react';
+import ImageGallery from '../../utils/ImageGallery';
+
+export default function Home() {
+  const [fetchData, setFetchData] = useState([1,2,3]);
+  const [keyword, setKeyword] = useState('');
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    const endpointURL = `https://pixabay.com/api/?key=40951011-80d0638d707057db738a74242&q=${key}&image_type=photo`;
+
+    const res = await fetch(endpointURL);
+    const data = await res.json();
+    const fetchData_raw = data.hits;
+
+    setFetchData(fetchData_raw);
+  };
+
+  const handleKeywordChange = (event) => {
+    setKeyword(event.target.value);
+  };
+
+  return (
+    <>
+      <div className="container">
+        <h2>My pix</h2>
+        <form onSubmit={handleSubmit}>
+          <input type="text" name="keyword" placeholder='画像を探す' onChange={handleKeywordChange} />
+          <br></br>
+          <button type="submit">
+            submit
+          </button>
+          <br></br>
+        </form>
+      </div>
+      <ImageGallery fetchData={fetchData} />
+    </>
+  );
+}
