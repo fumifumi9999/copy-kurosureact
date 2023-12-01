@@ -7,7 +7,9 @@ export default function Home() {
   const [fetchData, setFetchData] = useState([]);
 
   const handleSearch = async (keyword) => {
-    const endpointURL = `https://pixabay.com/api/?key=40951011-80d0638d707057db738a74242&q=${keyword}&image_type=photo`;
+    const endpointURL = `https://pixabay.com/api/?key=${process.env.NEXT_PUBLIC_PIXABAY_API_KEY}&q=${keyword}&image_type=photo`;
+    // const endpointURL = `https://pixabay.com/api/?key=40951011-80d0638d707057db738a74242&q=${keyword}&image_type=photo`;
+
 
     const res = await fetch(endpointURL);
     const data = await res.json();
