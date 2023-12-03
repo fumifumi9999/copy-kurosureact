@@ -23,9 +23,9 @@ export default function Search({ onSearch }) {
   return (
     // フォームの送信時にhandleSubmit関数を呼び出します。
     <form onSubmit={handleSubmit} className="mb-8 w-1/2 mx-auto">
-      // テキスト入力フィールドの値が変更されたときにhandleKeywordChange関数を呼び出します。
+      {/* テキスト入力フィールドの値が変更されたときにhandleKeywordChange関数を呼び出します。 */}
       <input type="text" name="keyword" placeholder='画像を探す' onChange={handleKeywordChange} className="input input-bordered w-full" />
-      // 送信ボタンをレンダリングします。
+      {/* 送信ボタンをレンダリングします。 */}
       <button type="submit" className="mt-4 btn btn-outline btn-success w-full">
         submit
       </button>
