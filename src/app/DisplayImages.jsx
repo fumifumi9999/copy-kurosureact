@@ -1,5 +1,5 @@
 // ImageGalleryコンポーネントをインポート
-import ImageGallery from '../../utils/imageGallery';
+import ImageGallery from '../utils/imageGallery';
 
 // DisplayImagesコンポーネントを定義
 export default function DisplayImages({ images }) {

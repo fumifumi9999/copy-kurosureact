@@ -1,32 +1,20 @@
-import { useState } from 'react';
+import { useRef } from 'react'; // reactからuseRefをインポート
 
-// Search関数コンポーネントをエクスポートします。onSearchは親コンポーネントからのpropsです。
-export default function Search({ onSearch }) {
-  // keywordの初期値を空文字列に設定し、setKeyword関数で更新します。
-  const [keyword, setKeyword] = useState('');
+export default function Search({ onSearch }) { // Search関数をエクスポート
+  const inputRef = useRef(); // useRefを使用してinputRefを定義
 
-  // フォームの送信を処理する関数です。
-  const handleSubmit = (event) => {
-    // フォームのデフォルトの送信動作を防ぎます。
-    event.preventDefault();
-    // onSearch関数を呼び出し、keywordを引数として渡します。
-    onSearch(keyword);
+  const handleSubmit = (event) => { // handleSubmit関数を定義
+    event.preventDefault(); // デフォルトのイベントを防止
+    onSearch(inputRef.current.value); // onSearch関数を呼び出し、inputRefの現在の値を渡す
   };
 
-  // keywordの値を更新する関数です。
-  const handleKeywordChange = (event) => {
-    // イベントのターゲットから値を取得し、setKeyword関数でkeywordを更新します。
-    setKeyword(event.target.value);
-  };
-
-  // フォームをレンダリングします。
   return (
-    // フォームの送信時にhandleSubmit関数を呼び出します。
-    <form onSubmit={handleSubmit} className="mb-8 w-1/2 mx-auto">
-      {/* テキスト入力フィールドの値が変更されたときにhandleKeywordChange関数を呼び出します。 */}
-      <input type="text" name="keyword" placeholder='画像を探す' onChange={handleKeywordChange} className="input input-bordered w-full" />
-      {/* 送信ボタンをレンダリングします。 */}
-      <button type="submit" className="mt-4 btn btn-outline btn-success w-full">
+    // form要素を返す、onSubmitにはhandleSubmit関数を指定
+    <form onSubmit={handleSubmit} className="mb-8 w-1/2 mx-auto"> 
+      {/* input要素を返す、refにはinputRefを指定 */}
+      <input ref={inputRef} type="text" name="keyword" placeholder='画像を探す' className="input input-bordered w-full" />
+      {/* submitボタンを返す */}
+      <button type="submit" className="mt-4 btn btn-outline btn-success w-full"> 
         submit
       </button>
     </form>

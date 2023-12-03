@@ -3,11 +3,13 @@
 import { useState } from 'react';
 import Search from './Search';
 import DisplayImages from './DisplayImages';
+import Count from './Count';
 
 // メインのHomeコンポーネント
 export default function Home() {
   // フェッチしたデータを保存するためのステート
   const [fetchData, setFetchData] = useState([]);
+  const [count, setCount] = useState(0);
 
   // 検索とデータのフェッチを処理する関数
   const handleSearch = async (keyword) => {
@@ -23,12 +25,16 @@ export default function Home() {
 
     // フェッチしたデータでステートを更新
     setFetchData(fetchData_raw);
+
+    // カウントを増やす
+    setCount((prev) => prev + 1)
   };
 
   // コンポーネントのレンダリング
   return (
     <div className="container mx-auto">
-      <h2 className="text-2xl font-bold mb-4 w-1/2 mx-auto text-center">My pix</h2>
+      <h1 className="text-2xl font-bold mb-4 w-1/2 mx-auto text-center">My pix</h1>
+      <Count count={count} />
       <Search onSearch={handleSearch} />
       <DisplayImages images={fetchData} />
     </div>
