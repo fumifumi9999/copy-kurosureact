@@ -20,7 +20,7 @@ export default function Home() {
 
   return (
     <div className="container mx-auto">
-      <h2 className="text-2xl font-bold mb-4 w-1/2 mx-auto">My pix</h2>
+      <h2 className="text-2xl font-bold mb-4 w-1/2 mx-auto text-center">My pix</h2>
       <Search onSearch={handleSearch} />
       <DisplayImages images={fetchData} />
     </div>
